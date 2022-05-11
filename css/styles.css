@@ -1,0 +1,58 @@
+/* JAVASCRIPT TYPE WRITER EFFECT. */
+/* Google Font:  */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,400;1,100;1,200;1,400&display=swap');
+/* Global Styles. */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    height: 100vh;
+    font-family: 'Raleway', sans-serif;
+    background: #333 center center / cover no-repeat url('../images/showcase.jpg');
+    color: #ccc;
+    overflow: hidden;
+}
+h1 {
+    font-size: 3.5rem;
+}
+h2 {
+    font-size: 2rem;
+}
+h2, footer {
+    color: #aaa;
+}
+h1, h2, footer {
+    font-weight: 200;
+    margin: 0.4rem;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    padding: 0 3rem;
+}
+@media(min-width: 1200px) {
+    h1 {
+        font-size: 5rem;
+    }
+}
+@media(max-width: 800px) {
+    h1 {
+        font-size: 3rem;
+    }
+    .container {
+        padding: 0 1rem;
+    }
+}
+@media(max-width: 500px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
+}
+/* Run time 12:30 */
