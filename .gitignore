@@ -1,0 +1,11 @@
+# GLOBAL .GITIGNORE
+
+.dccache
+.DS_Store
+composer.json
+composer.lock
+package.json
+package-lock.json
+Icon?
+.vscode/
+vendor/
