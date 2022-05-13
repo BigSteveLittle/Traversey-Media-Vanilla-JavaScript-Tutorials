@@ -34,6 +34,9 @@ h1, h2, footer {
     height: 100%;
     padding: 0 3rem;
 }
+.txt-type > .txt {
+    border-right: 0.2rem solid #777;
+}
 @media(min-width: 1200px) {
     h1 {
         font-size: 5rem;
