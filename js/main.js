@@ -2,7 +2,7 @@
 "use strict";
 // JAVASCRIPT TYPE WRITER EFFECT.
 
-// 'TypeWriter': method to set up properties for the type writer.
+// 1. 'TypeWriter': method to set up properties for the type writer.
 const TypeWriter = function(txtElement, words, wait = 3000) {
     this.txtElement = txtElement;
     this.words = words;
@@ -12,26 +12,53 @@ const TypeWriter = function(txtElement, words, wait = 3000) {
     this.type();
     this.isDeleting = false;
 }
-// 'TypeWriter': instantiate a prototype of the 'TypeWriter' method.
+// 2. 'TypeWriter.prototype.type': instantiate a prototype of the 'TypeWriter' method.
 TypeWriter.prototype.type = function() {
     // 'currentWord': obtain the current index of the current word.
     const currentWord = this.wordIndex % this.words.length;
     // 'fullTxt': grab the of the 'currentWord'.
     const fullText = this.words[currentWord];
-    // Check if the action is deleting.
+    // 'this.isDeleting': Check if the action is deleting.
     if(this.isDeleting) {
-        
+        // 'this.txt': remove a character.
+        this.txt = fullText.substring(0, this.txt.length - 1);
     }
-    setTimeout(() => this.type(), 500);
-    console.log(fullText);
+    else {
+        // 'this.txt': add a character.
+        this.txt = fullText.substring(0, this.txt.length + 1);
+    }
+    // 'this.txtElement': insert 'this.txt' into the HTML '.txt-type' element.
+    this.txtElement.innerHTML = `<span class="txt">${this.txt}</span>`;
+    // 'typeSpeed': set initial typing speed.
+    let typeSpeed = 300;
+    // 'typeSpeed': set speed to half if action is deleting.
+    if(this.isDeleting) {
+        typeSpeed /= 2; // Shorthand for typeSpeed / 2;.
+    }
+    // 'fullText': check if word is complete.
+    if(!this.isDeleting && this.txt === fullText) {
+        // 'typeSpeed': pause at end of typing.
+        typeSpeed = this.wait;
+        // 'this.isDeleting': reset to true for end of typing.
+        this.isDeleting = true;
+    }
+    else if(this.isDeleting && this.txt === '') {
+        // 'this.isDeleting': reset to false for end of typing.
+        this.isDeleting = false;
+        // 'this.wordIndex': increment to next word in array.
+        this.wordIndex++;
+        // 'typeSpeed': pause before typing next word.
+        typeSpeed = 500;
+    }
+    setTimeout(() => this.type(), typeSpeed);
 }
-// add an eventListener on DOM load.
+// 3. 'document': add an eventListener on DOM load.
 document.addEventListener('DOMContentLoaded', init);
-// method to initialise the type writer.
+// 4. 'init': method to initialise the type writer.
 function init() {
     const txtElement = document.querySelector('.txt-type');
     const words = JSON.parse(txtElement.getAttribute('data-words'));
     const wait = txtElement.getAttribute('data-wait');
-    // Initiate the 'TypeWriter' method.
+    // 'TypeWriter': initiate the  method.
     new TypeWriter(txtElement, words, wait);
 }
